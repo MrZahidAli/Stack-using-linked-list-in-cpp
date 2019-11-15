@@ -1,3 +1,4 @@
+//stack using linked list push, pop and print function
 #include<iostream>
 using namespace std;
 class node{
@@ -13,7 +14,7 @@ class linkList{
 			head = NULL;
 			tail = NULL;
 		}
-		void creatList(int value){
+		void push(int value){
 			node *temp = new node;
 			temp -> data = value;
 			temp -> next = NULL;
@@ -27,44 +28,66 @@ class linkList{
 			}
 			
 		}
-		void printList(){
+		void print(){
 			node *temp = new node;
 			temp = head;
+			if(head == NULL){
+				cout << endl << "stack is empty" <<endl;
+			}
 			while(temp != NULL){
 				cout << temp -> data << "\t";
 				temp = temp -> next;
 			}
+		
 		}
-		void stack() {
+		int pop() {
 			
     		node *current;
 			current = head;
 			
 			node* previous;
 			previous= head;
- 
-    		while(current->next != NULL) {
-    			previous = current;
-    			current = current->next;	
+			
+			if(head == NULL){
+				cout << endl << "stack is empty" << endl ;
+				return 0;
 			}
-			previous->next = NULL;
-			tail = previous;
-			cout << endl << "last element: " << current -> data << endl;
-			delete current;
+			else if(head == tail){
+					int headData = head -> data;
+					head = head -> next;
+					cout << endl << "last element: " << headData << endl;
+					return 0;
+			}
+			else{
+    			while(current->next != NULL) {
+    				previous = current;
+    				current = current->next;	
+				}
+				tail = previous;
+				previous->next = current -> next;
+				cout << endl << "last element: " << current -> data << endl;
+				delete current;
+				return 0;
+			}
 		}
 };
 int main(){
 	linkList a;
-	a.creatList(1);
-	a.creatList(3);
-	a.creatList(7);
-	a.creatList(6);
-	a.creatList(16);	
-	a.stack();
-	a.printList();
-	cout << endl ;
-	a.creatList(17);
-	cout << endl << "left linked list" << endl;
-	a.printList();
+	a.push(1);
+	a.push(3);
+//	a.push(7);
+//	a.push(6);
+//	a.push(16);	
+	a.pop();
+	a.pop();
+	a.pop();
+	a.push(4);
+	a.pop();
+	a.pop();
+//	a.print();
+//	cout << endl ;
+//	a.push(17);
+//	cout << endl << "left linked list" << endl;
+//	a.printList();
 	return 0;
 }
