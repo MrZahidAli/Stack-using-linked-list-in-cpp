@@ -1,4 +1,4 @@
-//stack using linked list push, pop and print function
+//stack perfect working
 #include<iostream>
 using namespace std;
 class node{
